@@ -125,3 +125,8 @@ echo ""
 echo "To set up your DNA on this machine:"
 echo "  git clone git@github.com:yourusername/evo-brain.git ~/00_DNA"
 echo ""
+
+# Kimi trust config
+mkdir -p ~/.kimi
+cp "$DOTFILES_DIR/config/kimi.json" ~/.kimi/kimi.json
+echo "  ✅ Kimi trust config installed"
