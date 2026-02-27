@@ -1,0 +1,35 @@
+{
+  // ═══════════════════════════════════════════════════════════
+  // VS Code AI Extensions - DNA Context Configuration
+  // ═══════════════════════════════════════════════════════════
+  
+  // GitHub Copilot - Uses .github/copilot-instructions.md (auto-loaded)
+  
+  // Continue Extension - Context files
+  "continue.contextFiles": [
+    "/home/evo/00_DNA/🧠 AI_CONTEXT.md",
+    "/home/evo/00_DNA/OPERATING_BACKLOG.md",
+    "/home/evo/00_DNA/DECISION_LOG.md"
+  ],
+  "continue.systemMessage": "You MUST read the DNA context files before responding. DNA is the persistent memory at /home/evo/00_DNA/.",
+  
+  // Cline Extension - Custom instructions
+  "cline.customInstructions": "Read /home/evo/00_DNA/🧠 AI_CONTEXT.md, /home/evo/00_DNA/OPERATING_BACKLOG.md, and /home/evo/00_DNA/DECISION_LOG.md before responding. DNA is the persistent memory.",
+  
+  // General AI Assistant Settings
+  "ai.customInstructions": "Evolution Stables DNA: Read /home/evo/00_DNA/ files for context. Never say 'I don't have previous context' - the context is in the DNA files.",
+  
+  // ═══════════════════════════════════════════════════════════
+  // Workspace Settings
+  // ═══════════════════════════════════════════════════════════
+  
+  "workbench.colorTheme": "Default Dark+",
+  "editor.formatOnSave": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/node_modules": true,
+    "**/.next": true,
+    "**/dist": true,
+    "**/build": true
+  }
+}

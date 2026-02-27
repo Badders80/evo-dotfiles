@@ -1,0 +1,27 @@
+# Don't track sensitive data
+.env
+*.pem
+*.key
+secrets/
+
+# Don't track local backups
+*.bak
+backups/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/settings.json.local
+
+# Node/Python artifacts (if any)
+node_modules/
+__pycache__/
+*.pyc
+
+# The actual DNA folder - this stays in evo-brain repo
+00_DNA/

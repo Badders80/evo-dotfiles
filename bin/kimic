@@ -1,0 +1,38 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════
+# kimic - Kimi with DNA Context (Model-Agnostic Memory System)
+# Installed to /usr/local/bin/kimic for universal availability
+# ═══════════════════════════════════════════════════════════
+
+EVO_ROOT="/home/evo"
+
+# Check if Kimi is installed
+if ! command -v kimi &> /dev/null; then
+    echo "❌ Error: kimi command not found"
+    echo "   Is Kimi CLI installed?"
+    exit 1
+fi
+
+# Show DNA context loading message
+echo "🧠 Loading DNA context..."
+echo ""
+
+# Build the context prompt
+CONTEXT_PROMPT="MANDATORY: Read these DNA files BEFORE responding:
+
+1. /evo/00_DNA/🧠 AI_CONTEXT.md - Project state and AI instructions
+2. /evo/00_DNA/OPERATING_BACKLOG.md - Current work and priorities
+3. /evo/00_DNA/DECISION_LOG.md - Recent decisions and context
+
+CRITICAL INSTRUCTIONS:
+- DO NOT say 'I don't have access to previous conversations'
+- DO NOT say 'this appears to be a fresh session'
+- DNA IS the persistent memory - read it
+- Acknowledge what you read in your response
+
+The user's question is likely: ${1:-'What are we working on?'}
+
+Read the DNA files NOW, then respond."
+
+# Launch Kimi with context pre-loaded
+exec kimi -p "$CONTEXT_PROMPT" "$@"

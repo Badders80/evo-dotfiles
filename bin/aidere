@@ -1,0 +1,29 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════
+# aidere - Aider with DNA Context
+# Universal Model-Agnostic Memory System
+# ═══════════════════════════════════════════════════════════
+
+EVO_ROOT="/home/evo"
+
+# Check if Aider is installed
+if ! command -v aider &> /dev/null; then
+    echo "❌ Error: aider command not found"
+    echo "   Install: pip install aider-chat"
+    exit 1
+fi
+
+# Show DNA context loading message
+echo "🧠 Loading DNA context for Aider..."
+echo ""
+
+# Build DNA file arguments for Aider
+# Aider uses --read flag for context files
+DNA_FILES=(
+    "--read" "$EVO_ROOT/00_DNA/🧠 AI_CONTEXT.md"
+    "--read" "$EVO_ROOT/00_DNA/OPERATING_BACKLOG.md"
+    "--read" "$EVO_ROOT/00_DNA/DECISION_LOG.md"
+)
+
+# Launch Aider with DNA context pre-loaded
+exec aider "${DNA_FILES[@]}" "$@"
