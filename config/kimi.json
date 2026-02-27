@@ -1,0 +1,45 @@
+{
+  "work_dirs": [
+    {
+      "path": "/home/evo",
+      "kaos": "local",
+      "last_session_id": "58323880-0cf6-43da-b125-079b2ee211ad"
+    },
+    {
+      "path": "/home/evo/projects/Evolution-3.1",
+      "kaos": "local",
+      "last_session_id": "81fe3da7-a71f-4e1e-9a30-556c3eccc119"
+    },
+    {
+      "path": "/tmp",
+      "kaos": "local",
+      "last_session_id": "a6d26407-05a9-445d-8309-8fc205841322"
+    },
+    {
+      "path": "/home/evo/.openclaw/workspace",
+      "kaos": "local",
+      "last_session_id": "a54925c6-9e18-4ded-b8d4-9a1796a71fc6"
+    },
+    {
+      "path": "/home/evo/evo-dotfiles/evo-dotfiles",
+      "kaos": "local",
+      "last_session_id": "79fed7ee-f6a7-43f6-8b65-208dd8ddc745"
+    }
+  ],
+  "trust": {
+    "mcp_tools": {
+      "read_multiple_files": "always",
+      "read_text_file": "always",
+      "read_file": "always",
+      "list_directory": "always",
+      "list_allowed_directories": "always",
+      "glob": "always",
+      "search_files": "always",
+      "grep": "always",
+      "write_file": "ask",
+      "str_replace_based_editing": "ask",
+      "shell": "ask",
+      "execute_command": "ask"
+    }
+  }
+}
