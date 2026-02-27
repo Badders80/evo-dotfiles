@@ -1,0 +1,29 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════
+# geminic - Gemini CLI with DNA Context
+# Universal Model-Agnostic Memory System
+# ═══════════════════════════════════════════════════════════
+
+EVO_ROOT="/home/evo"
+
+# Check if Gemini CLI is installed
+if ! command -v gemini &> /dev/null; then
+    echo "❌ Error: gemini command not found"
+    echo "   Install: npm install -g @google/gemini-cli"
+    exit 1
+fi
+
+# Show DNA context loading message
+echo "🧠 Loading DNA context for Gemini..."
+echo ""
+
+# Gemini auto-loads GEMINI.md from working directory or env var
+# Method 1: Use env var (cleaner, no file pollution)
+export GEMINI_SYSTEM_MD="$EVO_ROOT/00_DNA/🧠 AI_CONTEXT.md"
+
+# Method 2: Also create a combined GEMINI.md with all context (fallback)
+mkdir -p ~/.gemini
+dna-context > ~/.gemini/GEMINI.md 2>/dev/null
+
+# Launch Gemini with DNA context
+exec gemini "$@"
