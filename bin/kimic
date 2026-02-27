@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "🧠 Loading DNA context..."
 
-DNA_PROMPT="MANDATORY: Read these DNA files BEFORE responding:
+kimi --yolo --prompt "MANDATORY: Read these DNA files BEFORE responding:
 
 1. /home/evo/00_DNA/🧠 AI_CONTEXT.md - Project state and AI instructions
 2. /home/evo/00_DNA/OPERATING_BACKLOG.md - Current work and priorities
@@ -13,8 +13,4 @@ CRITICAL INSTRUCTIONS:
 - DNA IS the persistent memory - read it
 - Acknowledge what you read in your response
 
-The user will ask: What are we working on?
-
-Read the DNA files FIRST, then respond to the user's question above."
-
-echo "$DNA_PROMPT" | kimi --yolo
+Read the DNA files NOW, then wait for my next message."
