@@ -1,45 +1,4 @@
 #!/bin/bash
-# ═══════════════════════════════════════════════════════════
-# claudec - Claude CLI with DNA Context
-# Universal Model-Agnostic Memory System
-# ═══════════════════════════════════════════════════════════
-
-EVO_ROOT="/home/evo"
-
-# Check if Claude CLI is installed
-if ! command -v claude &> /dev/null; then
-    echo "❌ Error: claude command not found"
-    echo "   Install: npm install -g @anthropic-ai/claude-cli"
-    exit 1
-fi
-
-# Show DNA context loading message
 echo "🧠 Loading DNA context for Claude..."
-echo ""
-
-# Build the context - Claude uses --system-prompt or first message
-CONTEXT="MANDATORY: Read these DNA files BEFORE responding:
-
-1. /evo/00_DNA/🧠 AI_CONTEXT.md - Project state and AI instructions
-2. /evo/00_DNA/OPERATING_BACKLOG.md - Current work and priorities  
-3. /evo/00_DNA/DECISION_LOG.md - Recent decisions and context
-
-CRITICAL INSTRUCTIONS:
-- DO NOT say 'I don't have access to previous conversations'
-- DO NOT say 'this appears to be a fresh session'
-- DNA IS the persistent memory - read it
-- Acknowledge what you read in your response
-
-The user's question is likely: ${1:-'What are we working on?'}
-
-Read the DNA files NOW, then respond."
-
-# Launch Claude with context as system prompt
-# Note: Claude CLI may need different flag depending on version
-# Try --system-prompt first, fallback to piping
-if claude --help 2>&1 | grep -q "system-prompt"; then
-    exec claude --system-prompt "$CONTEXT" "$@"
-else
-    # Fallback: pipe context as first message
-    echo "$CONTEXT" | exec claude "$@"
-fi
+DNA=$(cat ~/00_DNA/🧠\ AI_CONTEXT.md ~/00_DNA/OPERATING_BACKLOG.md ~/00_DNA/DECISION_LOG.md 2>/dev/null)
+claude --system-prompt "MANDATORY: You have been pre-loaded with persistent memory from the DNA system. Read and acknowledge it before responding. DNA CONTENT: $DNA" --dangerously-skip-permissions "$@"

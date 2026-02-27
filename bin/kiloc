@@ -1,46 +1,7 @@
 #!/bin/bash
-# ═══════════════════════════════════════════════════════════
-# kiloc - Kilo Code CLI with DNA Context
-# Universal Model-Agnostic Memory System
-# ═══════════════════════════════════════════════════════════
-
-EVO_ROOT="/home/evo"
-
-# Check if Kilo is installed
-if ! command -v kilo &> /dev/null; then
-    echo "❌ Error: kilo command not found"
-    echo "   Is Kilo CLI installed?"
-    exit 1
-fi
-
-# Show DNA context loading message
 echo "🧠 Loading DNA context for Kilo..."
-echo ""
-
-# Kilo reads from AGENTS.md or config file
-# Create a temporary AGENTS.md with DNA context
-KILO_DNA_FILE="/tmp/kilo-dna-context.md"
-
-# Build the context
-cat > "$KILO_DNA_FILE" << EOF
-# Kilo Context - Evolution Stables DNA
-
-$(cat "$EVO_ROOT/00_DNA/🧠 AI_CONTEXT.md" 2>/dev/null || echo "AI_CONTEXT.md not found")
-
-## Current Work
-
-$(cat "$EVO_ROOT/00_DNA/OPERATING_BACKLOG.md" 2>/dev/null || echo "OPERATING_BACKLOG.md not found")
-
-## Recent Decisions
-
-$(cat "$EVO_ROOT/00_DNA/DECISION_LOG.md" 2>/dev/null | head -100 || echo "DECISION_LOG.md not found")
-
----
-
-**CRITICAL:** Before responding, you have read the DNA files above. 
-DO NOT say "I don't have access to previous context."
-DNA IS the persistent memory.
-EOF
-
-# Launch Kilo with DNA context
-exec kilo --context-file "$KILO_DNA_FILE" "$@" 2>/dev/null || exec kilo "$@"
+kilo --prompt "MANDATORY: Read these DNA files BEFORE responding:
+1. /home/evo/00_DNA/🧠 AI_CONTEXT.md
+2. /home/evo/00_DNA/OPERATING_BACKLOG.md
+3. /home/evo/00_DNA/DECISION_LOG.md
+Read them NOW then wait for my next message."
