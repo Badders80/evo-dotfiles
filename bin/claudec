@@ -1,4 +1,10 @@
 #!/bin/bash
 echo "🧠 Loading DNA context for Claude..."
+
+# Auth from vault
+if [ -f /evo/.env ]; then
+  export $(grep -E '^(ANTHROPIC_API_KEY|CLAUDE_CODE_USE_VERTEX|ANTHROPIC_VERTEX_PROJECT_ID|CLOUD_ML_REGION)=' /evo/.env | xargs)
+fi
+
 DNA=$(cat ~/00_DNA/🧠\ AI_CONTEXT.md ~/00_DNA/OPERATING_BACKLOG.md ~/00_DNA/DECISION_LOG.md 2>/dev/null)
-claude --system-prompt "MANDATORY: You have been pre-loaded with persistent memory from the DNA system. Read and acknowledge it before responding. DNA CONTENT: $DNA" --dangerously-skip-permissions "$@"
+claude --dangerously-skip-permissions --system-prompt "MANDATORY: Read and acknowledge DNA before responding. DNA CONTENT: $DNA" "$@"
